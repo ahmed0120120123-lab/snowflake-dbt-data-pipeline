@@ -1,0 +1,24 @@
+name: 'my_snowflake_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'my_snowflake_project'
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  my_snowflake_project:
+    staging:
+      +schema: STAGING
+      +materialized: view
+    intermediate:
+      +schema: INTERMEDIATE
+      +materialized: view
+    marts:
+      +schema: MARTS
+      +materialized: table
+

@@ -1,0 +1,11 @@
+WITH orders AS (
+    SELECT * FROM {{ ref('stg_orders') }}
+)
+SELECT
+    customer_id,
+    COUNT(order_id) AS total_orders,
+    SUM(amount) AS total_spent,
+    MAX(order_date) AS most_recent_order_date
+FROM orders
+WHERE order_status = 'COMPLETED'
+GROUP BY customer_id
